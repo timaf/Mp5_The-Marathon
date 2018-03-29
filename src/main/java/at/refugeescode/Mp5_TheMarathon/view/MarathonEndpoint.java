@@ -10,17 +10,17 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/runners")
-public class RunnersEndpoint {
+@RequestMapping
+public class MarathonEndpoint {
 
     private List<Runner> runners = new ArrayList <>();
 
-    @GetMapping
+    @GetMapping("/runners")
     List<Runner> bringAll(){
         return runners;
     }
 
-    @PostMapping
+    @PostMapping("/runners")
     Runner send(@RequestBody Runner runner){
         runners.add(runner);
         return runner;

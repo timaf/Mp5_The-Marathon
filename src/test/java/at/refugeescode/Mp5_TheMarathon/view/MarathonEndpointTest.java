@@ -27,7 +27,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
-class RunnersEndpointTest {
+class MarathonEndpointTest {
 
     @LocalServerPort
     private int port;
@@ -36,9 +36,9 @@ class RunnersEndpointTest {
     private TestRestTemplate testTemplate;
 
     @SpyBean
-    private RunnersEndpoint runnersEndpoint;
+    private MarathonEndpoint marathonEndpoint;
 
-    private String endpoint = "runners";
+    private String endpoint = "/runners";
 
     private String url;
 
@@ -53,7 +53,7 @@ class RunnersEndpointTest {
         ResponseEntity <Runner[]> response = testTemplate.getForEntity(url, Runner[].class);
         List <Runner> theRunners = Arrays.asList(response.getBody());
         assertTrue(theRunners.isEmpty());
-        verify(runnersEndpoint).bringAll();
+        verify(marathonEndpoint).bringAll();
     }
 
     @Test
